@@ -1,0 +1,29 @@
+#compdef speedtest
+
+function _servers {
+  compadd $(speedtest --list | sed '1d; s/).*//; s/[[:space:]]//')
+}
+
+_arguments -C \
+  '(- \*)'{-h,--help}'[show this help message and exit]' \
+  '(- \*)--version[Show the version number and exit]' \
+  '(--no-download)--no-download[Do not perform download test]' \
+  '(--no-upload)--no-upload[Do not perform upload test]' \
+  '(--single)--single[Only use a single connection instead of multiple.]' \
+  '(--bytes)--bytes[Display values in bytes instead of bits.]' \
+  '(--share)--share[pass options directly to the "node" binary]' \
+  '(--simple)--simple[Suppress verbose output, only show basic information]' \
+  '(--csv)--csv[Suppress verbose output, only show basic information in CSV format.]' \
+  '(--csv-header)--csv-header[Print CSV headers]' \
+  '(--json)--json[Suppress verbose output, only show basic information in JSON format.]' \
+  '(--list)--list[Display a list of speedtest.net servers sorted by distance]' \
+  '(--csv-delimiter)--csv-delimiter[Single character delimiter to use in CSV output.]:CSV delimiter' \
+  '(--server)--server[Specify a server ID to test against.]:Server name:_servers' \
+  '(--exclude)--exclude[Exclude a server from selection.]:Server name:_servers' \
+  '(--mini)--mini[URL of the Speedtest Mini server]:URL' \
+  '(--source)--source[Source IP address to bind to]:IP Address' \
+  '(--timeout)--timeout[HTTP timeout in seconds.]:Seconds' \
+  '(--secure)--secure[Use HTTPS instead of HTTP when communicating with speedtest.net operated servers]' \
+  '(--no-pre-allocate)--no-pre-allocate[Do not pre allocate upload data.]' && ret=0
+
+return ret
