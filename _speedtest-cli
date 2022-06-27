@@ -4,6 +4,7 @@ function _servers {
   compadd $(speedtest --list | sed '1d; s/).*//; s/[[:space:]]//')
 }
 
+ret=1
 _arguments -C \
   '(- \*)'{-h,--help}'[show this help message and exit]' \
   '(- \*)--version[Show the version number and exit]' \
